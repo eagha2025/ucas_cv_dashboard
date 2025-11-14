@@ -11,47 +11,47 @@
 
   <style>
     :root{
-      --ucas-blue:#004aad; --ucas-green:#007b8a;
-      --ucas-light:#f4f8fb; --ucas-gray:#e9eef5; 
+      --ucas-blue:#004aad;
+      --ucas-green:#007b8a;
+      --ucas-light:#f4f8fb;
+      --ucas-gray:#e9eef5;
       --text:#1f2d3d;
     }
     *{box-sizing:border-box}
     html,body{margin:0;padding:0}
-    html{scroll-behavior:smooth; scroll-padding-top:110px}
+    html{scroll-behavior:smooth;scroll-padding-top:110px}
     body{
       font-family:"Inter","Cairo",sans-serif;
       background:
         radial-gradient(60rem 60rem at -10% -10%, rgba(0,122,139,0.25), transparent 60%),
         radial-gradient(60rem 60rem at 110% 10%, rgba(0,74,173,0.25), transparent 60%),
         linear-gradient(135deg,var(--ucas-green),var(--ucas-blue));
-      background-attachment: fixed;
+      background-attachment:fixed;
       color:var(--text);
     }
 
     /* NAVBAR */
     nav{
       position:sticky;top:0;z-index:999;
-      background:rgba(255,255,255,0.9);
+      background:rgba(255,255,255,0.95);
       backdrop-filter:blur(12px);
       border-bottom:1px solid #d5dce6;
     }
-    .nav-inner{max-width:1200px;margin:auto;padding:14px;
-      display:flex;align-items:center;gap:18px}
-
+    .nav-inner{
+      max-width:1200px;margin:auto;padding:14px 16px;
+      display:flex;align-items:center;gap:18px;
+    }
     .brand{display:flex;align-items:center;gap:14px}
-    .brand img{height:60px;border-radius:14px;padding:6px;background:white}
-
+    .brand img{height:60px;border-radius:14px;padding:6px;background:#fff}
     .title .main{color:var(--ucas-green);font-weight:800;font-size:1.25rem}
     .title .sub{color:var(--ucas-blue);font-weight:700;font-size:.95rem}
-
-    .links{margin-left:auto;display:flex;gap:18px}
+    .links{margin-left:auto;display:flex;gap:18px;flex-wrap:wrap}
     .links a{
       text-decoration:none;color:var(--ucas-blue);
       font-weight:700;padding:6px 10px;border-radius:10px;
-      transition:.25s;
+      transition:.2s;
     }
     .links a:hover{background:var(--ucas-light)}
-
     .lang-btn{
       background:linear-gradient(90deg,var(--ucas-green),var(--ucas-blue));
       color:white;padding:8px 14px;border:none;
@@ -66,9 +66,8 @@
       border:1px solid #dce5ef;
       box-shadow:0 14px 40px rgba(0,0,0,.12);
     }
-    .hero h1{color:var(--ucas-blue);font-size:2.2rem;margin-bottom:.5rem}
-    .hero p{color:#475569;margin-bottom:1.2rem}
-
+    .hero h1{color:var(--ucas-blue);font-size:2.2rem;margin:.2rem 0 .6rem}
+    .hero p{color:#475569;margin-top:0;margin-bottom:1.2rem}
     .cta{display:flex;gap:14px;flex-wrap:wrap}
     .btn{
       padding:12px 18px;border-radius:12px;border:none;cursor:pointer;
@@ -77,20 +76,23 @@
     }
     .btn.secondary{
       background:white;color:var(--ucas-blue);
-      border:2px solid var(--ucas-blue)
+      border:2px solid var(--ucas-blue);
     }
-
     .hero-card{
       background:#ffffff;border-radius:18px;
       padding:14px;
       display:grid;grid-template-columns:repeat(3,1fr);
       gap:14px;border:1px solid #dce6f0;
     }
-
-    .mini{background:var(--ucas-light);border-radius:10px;padding:12px;
-      border-left:6px solid var(--ucas-green)}
+    .mini{
+      background:var(--ucas-light);border-radius:10px;padding:12px;
+      border-left:6px solid var(--ucas-green);
+    }
     .mini b{color:var(--ucas-blue)}
-    /* UNIVERSAL CARD SECTIONS */
+    .muted{color:#64748b;font-size:.95rem}
+    @media(max-width:960px){.hero-inner{grid-template-columns:1fr}}
+
+    /* SECTIONS */
     main{max-width:1200px;margin:22px auto;padding:0 16px}
     .section{
       background:white;border-radius:16px;
@@ -104,60 +106,122 @@
       display:inline-block;padding-bottom:4px;margin-top:0;
       font-size:1.35rem;font-weight:800;
     }
-
-    textarea{width:100%;padding:14px;font-size:1rem;
-      border:1px solid #ced8e4;border-radius:12px}
-
-    .controls{display:flex;gap:12px;margin-bottom:12px;flex-wrap:wrap}
-
-    /* 🔥 Applicants animated cards */
-    .grid-cards{
-      display:grid;gap:18px;margin-top:14px;
-      grid-template-columns:repeat(auto-fill,minmax(290px,1fr));
+    textarea{
+      width:100%;padding:14px;font-size:1rem;
+      border:1px solid #ced8e4;border-radius:12px;
     }
+    .row-actions{
+      display:flex;align-items:center;justify-content:flex-end;
+      gap:10px;margin-top:10px;flex-wrap:wrap;
+    }
+    .controls{display:flex;gap:12px;margin-bottom:12px;flex-wrap:wrap}
+    select,input[type="text"]{
+      padding:10px 12px;border-radius:10px;
+      border:1px solid #d6dbe1;min-width:220px;
+    }
+
+    /* ORIGINAL DETAIL CARDS (لما يختار متقدم من القائمة) */
+    .cards{display:grid;grid-template-columns:repeat(12,1fr);gap:16px}
+    .card{grid-column:span 12;background:#fff;border-radius:14px;
+      border:1px solid #e2e8f0;padding:18px}
+    .detail{
+      background:var(--ucas-light);border-radius:8px;
+      border-left:6px solid var(--ucas-green);
+      padding:12px;margin-top:6px;
+    }
+    ul.skills{margin:0;padding-left:20px}
+    ul.skills li{margin:3px 0}
+
+    /* LINKEDIN-STYLE APPLICANT CARDS */
+    .grid-cards{
+      display:grid;gap:18px;margin-top:18px;
+      grid-template-columns:repeat(3,1fr);
+    }
+    @media(max-width:1000px){.grid-cards{grid-template-columns:repeat(2,1fr)}}
+    @media(max-width:700px){.grid-cards{grid-template-columns:1fr}}
+
     .app-card{
-      background:white;padding:18px;border-radius:16px;
-      border:1px solid #e2e8f0;
-      box-shadow:0 8px 24px rgba(0,0,0,.06);
-      opacity:0;transform:translateY(20px);
-      transition:all .6s ease;
+      background:white;border-radius:18px;
+      border:1px solid #dde5f0;
+      box-shadow:0 10px 26px rgba(15,23,42,.09);
+      padding:16px 16px 14px;
+      opacity:0;transform:translateY(18px);
+      transition:opacity .55s ease,transform .55s ease;
     }
     .app-card.visible{opacity:1;transform:translateY(0)}
-    .app-card .name{color:var(--ucas-blue);font-size:1.2rem;font-weight:800}
-    .app-card .meta{color:#475569;font-size:.9rem;margin-bottom:8px}
-    .app-card .score{
-      background:linear-gradient(135deg,var(--ucas-green),var(--ucas-blue));
-      font-weight:800;color:white;
-      width:48px;height:48px;border-radius:50%;
-      display:flex;align-items:center;justify-content:center;
-      font-size:1rem;
+
+    .app-top{
+      display:flex;align-items:center;justify-content:space-between;
+      margin-bottom:10px;gap:10px;
     }
-    .app-card .row{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
-    .app-card .actions{display:flex;gap:10px;margin-top:10px}
-    .app-card .btn-mini{
-      padding:6px 10px;border-radius:10px;font-weight:700;
-      background:white;border:1px solid var(--ucas-blue);
-      color:var(--ucas-blue);cursor:pointer;
+    .avatar{
+      width:46px;height:46px;border-radius:50%;
+      background:linear-gradient(135deg,var(--ucas-green),var(--ucas-blue));
+      color:white;font-weight:800;font-size:1.2rem;
+      display:flex;align-items:center;justify-content:center;
+      flex-shrink:0;
+    }
+    .info{flex:1;min-width:0}
+    .info .name{font-weight:800;color:var(--ucas-blue);font-size:1.05rem}
+    .info .meta{color:#475569;font-size:.9rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+
+    .score-badge{
+      width:40px;height:40px;border-radius:50%;
+      display:flex;align-items:center;justify-content:center;
+      font-weight:800;color:white;font-size:1rem;
+      background:linear-gradient(135deg,var(--ucas-green),var(--ucas-blue));
     }
 
-    footer{color:#eaf2fb;text-align:center;padding:28px}
+    .tags{
+      margin-top:6px;min-height:22px;
+      display:flex;flex-wrap:wrap;gap:6px;
+    }
+    .tag{
+      background:var(--ucas-light);
+      padding:3px 8px;border-radius:999px;
+      font-size:.8rem;color:#334155;
+      border:1px solid #e2e8f0;
+    }
+
+    .app-actions{
+      display:flex;gap:8px;margin-top:10px;flex-wrap:wrap;
+    }
+    .btn-mini{
+      padding:7px 10px;border-radius:10px;border:1px solid var(--ucas-blue);
+      font-weight:700;font-size:.85rem;cursor:pointer;
+      background:white;color:var(--ucas-blue);
+    }
+
+    /* SHORTLIST */
+    #shortlistContainer .candidate{
+      background:white;border-radius:12px;border-left:6px solid var(--ucas-green);
+      padding:10px 12px;margin:6px 0;
+      display:flex;justify-content:space-between;align-items:center;
+      box-shadow:0 3px 10px rgba(15,23,42,.08);
+    }
+    #shortlistContainer .score-badge{width:32px;height:32px;font-size:.9rem}
+
+    footer{
+      color:#eaf2fb;text-align:center;padding:26px;
+      font-size:.9rem;
+    }
+
+    [dir="rtl"] .nav-inner{flex-direction:row-reverse}
+    [dir="rtl"] .links{margin-left:0;margin-right:auto}
+    [dir="rtl"] .brand{flex-direction:row-reverse}
   </style>
 </head>
-
 <body>
 
-<!-- NAVBAR -->
 <nav>
   <div class="nav-inner">
-    
     <div class="brand">
-      <img src="https://i.postimg.cc/9MznzvS9/239749074-4090792351043901-7140990477766433582-n-jpg-nc-cat-106-ccb-1-7-nc-sid-6ee11a-nc-ohc-pi-Ld.jpg">
+      <img src="https://i.postimg.cc/9MznzvS9/239749074-4090792351043901-7140990477766433582-n-jpg-nc-cat-106-ccb-1-7-nc-sid-6ee11a-nc-ohc-pi-Ld.jpg" alt="UCAS logo">
       <div class="title">
         <div class="main" data-i18n="collegeName">University College of Applied Sciences (UCAS)</div>
         <div class="sub" data-i18n="facultyName">Faculty of Engineering & Smart Systems</div>
       </div>
     </div>
-
     <div class="links">
       <a href="#home" data-i18n="navHome">Home</a>
       <a href="#jobdesc" data-i18n="navJobDesc">Job Description</a>
@@ -169,7 +233,6 @@
   </div>
 </nav>
 
-<!-- HERO -->
 <section class="hero" id="home">
   <div class="hero-inner">
     <div>
@@ -177,70 +240,70 @@
       <p data-i18n="heroSubtitle">
         An elegant, data-driven interface to review, evaluate, and shortlist candidates.
       </p>
-
       <div class="cta">
         <a href="#applicants" class="btn" data-i18n="ctaStart">Start Reviewing</a>
         <a href="#jobdesc" class="btn secondary" data-i18n="ctaUpdateProfile">Update Job Description</a>
       </div>
     </div>
-
     <div class="hero-card">
-      <div class="mini"><b data-i18n="kpi1Title">Live Data</b><div data-i18n="kpi1Text" class="muted">Synced from Google Sheets</div></div>
-      <div class="mini"><b data-i18n="kpi2Title">AI Scoring</b><div data-i18n="kpi2Text" class="muted">Automated profile matching</div></div>
-      <div class="mini"><b data-i18n="kpi3Title">Export</b><div data-i18n="kpi3Text" class="muted">One-click CSV</div></div>
+      <div class="mini">
+        <b data-i18n="kpi1Title">Live Data</b>
+        <div class="muted" data-i18n="kpi1Text">Synced from Google Sheets</div>
+      </div>
+      <div class="mini">
+        <b data-i18n="kpi2Title">AI Scoring</b>
+        <div class="muted" data-i18n="kpi2Text">Automated profile matching</div>
+      </div>
+      <div class="mini">
+        <b data-i18n="kpi3Title">Export</b>
+        <div class="muted" data-i18n="kpi3Text">One-click CSV</div>
+      </div>
     </div>
   </div>
 </section>
 
 <main>
-<!-- JOB DESCRIPTION -->
-<section class="section" id="jobdesc">
-  <h3 data-i18n="jobDescTitle">📝 Job Description</h3>
-  <p class="muted" data-i18n="jobDescHint">
-    Enter or paste the role profile in English and click Save to sync with the workflow.
-  </p>
-
-  <textarea id="jobDescInput" rows="6"></textarea>
-
-  <div class="row-actions">
-    <span id="saveStatus" class="muted"></span>
-    <button class="btn" id="saveJobDesc" data-i18n="save">Save</button>
-  </div>
-</section>
-
-<!-- APPLICANTS -->
-<section class="section" id="applicants">
-  <h3 data-i18n="applicantsTitle">👤 Applicants</h3>
-
-  <div class="controls">
-    <select id="applicantSelect"><option>Loading…</option></select>
-    <button class="btn" id="refreshBtn" data-i18n="refreshBtn">Refresh</button>
-    <span class="muted" id="totalApplicants">Loading…</span>
-  </div>
-
-  <!-- Detailed applicant cards (original) -->
-  <section class="cards" id="cards" style="display:none"></section>
-
-  <!-- NEW: Animated grid cards -->
-  <div class="grid-cards" id="applicantCards"></div>
-</section>
-
-<!-- SHORTLIST -->
-<section class="section" id="shortlist">
-  <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap">
-    <h3 id="shortlistTitle">Shortlisted (Score > 7)</h3>
-    <div>
-      <button class="btn" id="refreshShortlistBtn" data-i18n="refreshShortlist">Refresh shortlist</button>
-      <button class="btn" id="exportCSV" data-i18n="exportCSV">Export CSV</button>
+  <!-- JOB DESCRIPTION -->
+  <section class="section" id="jobdesc">
+    <h3 data-i18n="jobDescTitle">📝 Job Description</h3>
+    <p class="muted" data-i18n="jobDescHint">
+      Enter or paste the role profile in English and click Save to sync with the workflow.
+    </p>
+    <textarea id="jobDescInput" rows="6"></textarea>
+    <div class="row-actions">
+      <span id="saveStatus" class="muted"></span>
+      <button class="btn" id="saveJobDesc" data-i18n="save">Save</button>
     </div>
-  </div>
+  </section>
 
-  <input id="searchShortlist" type="text" placeholder="Search...">
-  <div id="shortlistContainer" class="muted" style="margin-top:10px;">
-    No shortlisted applicants yet.
-  </div>
-</section>
+  <!-- APPLICANTS -->
+  <section class="section" id="applicants">
+    <h3 data-i18n="applicantsTitle">👤 Applicants</h3>
+    <div class="controls">
+      <select id="applicantSelect"><option>Loading…</option></select>
+      <button class="btn" id="refreshBtn" data-i18n="refreshBtn">Refresh</button>
+      <span class="muted" id="totalApplicants">Loading…</span>
+    </div>
 
+    <!-- detailed view when selecting one applicant -->
+    <section class="cards" id="cards" style="display:none"></section>
+
+    <!-- LinkedIn-style grid cards -->
+    <div class="grid-cards" id="applicantCards"></div>
+  </section>
+
+  <!-- SHORTLIST -->
+  <section class="section" id="shortlist">
+    <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap">
+      <h3 id="shortlistTitle">Shortlisted (Score &gt; 7)</h3>
+      <div>
+        <button class="btn" id="refreshShortlistBtn" data-i18n="refreshShortlist">Refresh shortlist</button>
+        <button class="btn" id="exportCSV" data-i18n="exportCSV">Export CSV</button>
+      </div>
+    </div>
+    <input id="searchShortlist" type="text" placeholder="Search shortlisted..." style="margin-top:10px;padding:8px;border-radius:8px;border:1px solid #d0d7e2;width:100%">
+    <div id="shortlistContainer" class="muted" style="margin-top:10px;">No shortlisted applicants yet.</div>
+  </section>
 </main>
 
 <footer id="contact">
@@ -248,148 +311,309 @@
 </footer>
 
 <script>
-const CSV_URL =
- "https://docs.google.com/spreadsheets/d/e/2PACX-1vQWe3rtqVXI0582iM7jNSSnxSP7dySxe3dkAyzP9dLj13SDlaxSiavyPdtHenAU_waMiHvFjrW8mEUw/pub?output=csv";
+  const CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQWe3rtqVXI0582iM7jNSSnxSP7dySxe3dkAyzP9dLj13SDlaxSiavyPdtHenAU_waMiHvFjrW8mEUw/pub?output=csv";
+  const N8N_ENDPOINT = "https://n8nprojects2026.app.n8n.cloud/webhook/job_description_update";
 
-const N8N_ENDPOINT =
- "https://n8nprojects2026.app.n8n.cloud/webhook/job_description_update";
+  const $ = id => document.getElementById(id);
+  const state = { rows: [], lang: "en" };
 
-const $ = (id)=>document.getElementById(id);
-const state = { rows:[], lang:"en" };
+  const t = {
+    en:{
+      collegeName:"University College of Applied Sciences (UCAS)",
+      facultyName:"Faculty of Engineering & Smart Systems",
+      navHome:"Home", navJobDesc:"Job Description", navApplicants:"Applicants", navShortlist:"Shortlist", navContact:"Contact",
+      heroTitle:"Applicant Review Dashboard",
+      heroSubtitle:"An elegant, data-driven interface to review, evaluate, and shortlist candidates.",
+      ctaStart:"Start Reviewing", ctaUpdateProfile:"Update Job Description",
+      kpi1Title:"Live Data", kpi1Text:"Synced from Google Sheets",
+      kpi2Title:"AI Scoring", kpi2Text:"Automated profile matching",
+      kpi3Title:"Export", kpi3Text:"One-click CSV",
+      jobDescTitle:"📝 Job Description",
+      jobDescHint:"Enter or paste the role profile in English and click Save to sync with the workflow.",
+      save:"Save",
+      applicantsTitle:"👤 Applicants",
+      refreshBtn:"Refresh",
+      refreshShortlist:"Refresh shortlist",
+      exportCSV:"Export CSV"
+    },
+    ar:{
+      collegeName:"الكلية الجامعية للعلوم التطبيقية (UCAS)",
+      facultyName:"كلية الهندسة والأنظمة الذكية",
+      navHome:"الرئيسية", navJobDesc:"وصف الوظيفة", navApplicants:"المتقدمون", navShortlist:"القائمة القصيرة", navContact:"تواصل",
+      heroTitle:"لوحة تقييم المتقدمين",
+      heroSubtitle:"واجهة أنيقة قائمة على البيانات لمراجعة المتقدمين وتقييمهم واختيار الأنسب.",
+      ctaStart:"ابدأ المراجعة", ctaUpdateProfile:"تحديث وصف الوظيفة",
+      kpi1Title:"بيانات مباشرة", kpi1Text:"متزامنة مع Google Sheets",
+      kpi2Title:"تقييم ذكي", kpi2Text:"مطابقة تلقائية مع ملف الوظيفة",
+      kpi3Title:"تصدير", kpi3Text:"تصدير CSV بنقرة واحدة",
+      jobDescTitle:"📝 وصف الوظيفة",
+      jobDescHint:"أدخل أو ألصق وصف الوظيفة ثم اضغط حفظ لإرساله إلى سير العمل.",
+      save:"حفظ",
+      applicantsTitle:"👤 المتقدمون",
+      refreshBtn:"تحديث",
+      refreshShortlist:"تحديث القائمة",
+      exportCSV:"تصدير CSV"
+    }
+  };
 
-/* ------------------- i18n ------------------- */
-const t = {
-  en:{
-    navHome:"Home", navApplicants:"Applicants", navShortlist:"Shortlist",
-    navContact:"Contact", navJobDesc:"Job Description",
-    collegeName:"University College of Applied Sciences (UCAS)",
-    facultyName:"Faculty of Engineering & Smart Systems",
-    heroTitle:"Applicant Review Dashboard",
-    jobDescTitle:"📝 Job Description",
-    jobDescHint:"Enter or paste the role profile in English and click Save."
-  },
-  ar:{
-    navHome:"الرئيسية", navApplicants:"المتقدمون", navShortlist:"القائمة القصيرة",
-    navContact:"تواصل", navJobDesc:"وصف الوظيفة",
-    collegeName:"الكلية الجامعية للعلوم التطبيقية",
-    facultyName:"كلية الهندسة والأنظمة الذكية",
-    heroTitle:"لوحة تقييم المتقدمين",
-    jobDescTitle:"📝 وصف الوظيفة",
-    jobDescHint:"أدخل أو ألصق وصف الوظيفة ثم اضغط حفظ."
+  function applyI18n(){
+    const dict = t[state.lang];
+    document.querySelectorAll("[data-i18n]").forEach(el=>{
+      const key = el.getAttribute("data-i18n");
+      if(dict[key]) el.textContent = dict[key];
+    });
+    document.documentElement.dir = state.lang === "ar" ? "rtl" : "ltr";
+    document.documentElement.lang = state.lang;
+    $("langToggle").textContent = state.lang === "ar" ? "English" : "العربية";
   }
-};
 
-function applyI18n(){
-  const dict = t[state.lang];
-  document.querySelectorAll("[data-i18n]").forEach(el=>{
-    el.textContent = dict[el.getAttribute("data-i18n")] || "";
-  });
-  document.documentElement.dir = state.lang==="ar" ? "rtl" : "ltr";
-  $("langToggle").textContent = state.lang==="ar" ? "English" : "العربية";
-}
+  // robust CSV parser (handles quotes)
+  function parseCSV(text){
+    const rows=[];let current='',row=[],inQuotes=false;
+    for(let i=0;i<text.length;i++){
+      const c=text[i],next=text[i+1];
+      if(c==='"'){
+        if(inQuotes && next==='"'){ current+='"'; i++; }
+        else inQuotes=!inQuotes;
+      }else if(c===',' && !inQuotes){
+        row.push(current); current='';
+      }else if((c==='\n' || c==='\r') && !inQuotes){
+        if(current!=='' || row.length){
+          row.push(current); rows.push(row); row=[]; current='';
+        }
+      }else current+=c;
+    }
+    if(current!=='' || row.length){ row.push(current); rows.push(row); }
+    const headers = rows.shift().map(h=>h.trim());
+    return rows.map(r=>{
+      const obj={};
+      headers.forEach((h,i)=>{obj[h]= (r[i]||'').trim();});
+      return obj;
+    });
+  }
 
-/* ------------------- CSV PARSER ------------------- */
-function parseCSV(text){
-  const lines = text.split(/\r?\n/);
-  const headers = lines.shift().split(",");
-  return lines.map(line=>{
-    const cells = line.split(",");
-    return Object.fromEntries(headers.map((h,i)=>[h,cells[i]||""]));
-  });
-}
+  function filterRows(rows){
+    return rows.filter(r=>{
+      const email = (r.EMAIL || r.Email || "").trim();
+      const phone = (r.PHONE || r.Phone || "").trim();
+      const cv    = (r["CV LINK"] || r["CV LINK "] || "").trim();
+      const name  = (r.NAME || r.Name || r["Full Name"] || "").trim();
+      // تجاهل أي صف بدون اسم وبدون (إيميل أو هاتف أو CV)
+      if(!name) return false;
+      if(!(email || phone || cv)) return false;
+      return true;
+    });
+  }
 
-/* ------------------- LOAD DATA ------------------- */
-async function loadData(){
-  const res = await fetch("https://corsproxy.io/?" + encodeURIComponent(CSV_URL));
-  const text = await res.text();
-  const rows = parseCSV(text);
-  state.rows = rows;
-  hydrateDropdown(rows);
-  renderAllApplicantsCards(rows);
-  applyI18n();
-  revealOnScroll();
-}
+  async function loadData(){
+    try{
+      const res = await fetch("https://corsproxy.io/?" + encodeURIComponent(CSV_URL));
+      const text = await res.text();
+      let rows = parseCSV(text);
+      rows = filterRows(rows);
+      state.rows = rows;
+      hydrateDropdown(rows);
+      renderAllApplicantCards(rows);
+      renderShortlisted(rows);
+      $("totalApplicants").textContent = `Total applicants: ${rows.length}`;
+      applyI18n();
+      setupRevealAnimation();
+    }catch(e){
+      console.error(e);
+      $("totalApplicants").textContent = "Failed to load applicants.";
+    }
+  }
 
-/* ------------------- APPLICANT DROPDOWN ------------------- */
-function hydrateDropdown(rows){
-  const sel = $("applicantSelect");
-  sel.innerHTML = "<option>Select applicant</option>";
-  rows.forEach(r=>{
-    const name = r.NAME || r["Full Name"] || "Unnamed";
-    const o=document.createElement("option");
-    o.value=name; o.textContent=name;
-    sel.appendChild(o);
-  });
-}
+  function hydrateDropdown(rows){
+    const sel = $("applicantSelect");
+    sel.innerHTML = state.lang==="ar" ? "<option value=''>اختر متقدمًا</option>" : "<option value=''>Select an applicant</option>";
+    rows.forEach(r=>{
+      const name = r.NAME || r.Name || r["Full Name"] || "Unnamed";
+      const opt=document.createElement("option");
+      opt.value=name; opt.textContent=name;
+      sel.appendChild(opt);
+    });
+    sel.onchange = ()=> {
+      const row = rows.find(r=>(r.NAME||r.Name||r["Full Name"])===sel.value);
+      renderDetail(row);
+    };
+  }
 
-/* ------------------- ANIMATED APPLICANT CARDS ------------------- */
-function renderAllApplicantsCards(rows){
-  const container = $("applicantCards");
-  container.innerHTML = rows.map((r,i)=>{
-    const name = r.NAME || r["Full Name"] || "Unnamed";
-    const city = r.CITY || "";
-    const email = r.EMAIL || "";
-    const score = r.VOTE || "-";
-    const cv = r["CV LINK"] || "";
+  function renderDetail(row){
+    const cards = $("cards");
+    if(!row){cards.style.display="none";cards.innerHTML="";return;}
+    cards.style.display="grid";
 
-    return `
-      <div class="app-card reveal" style="transition-delay:${i*30}ms">
-        <div class="row">
-          <div>
-            <div class="name">${name}</div>
-            <div class="meta">${city} · ${email}</div>
-          </div>
-          <div class="score">${score}</div>
+    const skillsList = (row.SKILLS||"").split(/[•,;\n]/).filter(s=>s.trim()).map(s=>`<li>${s.trim()}</li>`).join("");
+    const labels = state.lang==="ar"
+      ? {profile:"الملف الشخصي",name:"الاسم",email:"البريد",phone:"الهاتف",city:"المدينة",dob:"تاريخ الميلاد",cv:"السيرة الذاتية",edu:"التعليم",job:"الخبرات",skills:"المهارات",summary:"الملخص",eval:"التقييم",view:"عرض"}
+      : {profile:"Applicant Profile",name:"Name",email:"Email",phone:"Phone",city:"City",dob:"Birthdate",cv:"CV",edu:"Education",job:"Job History",skills:"Skills",summary:"Summary",eval:"Evaluation",view:"View"};
+
+    const cvKey = row["CV LINK "] || row["CV LINK"] || row["CV_LINK"] || "";
+    cards.innerHTML = `
+      <div class="card">
+        <h3>👤 ${labels.profile}</h3>
+        <div class="detail">
+          <div><b>${labels.name}:</b> ${row.NAME||row["Full Name"]||""}</div>
+          <div><b>${labels.email}:</b> ${row.EMAIL||""}</div>
+          <div><b>${labels.phone}:</b> ${row.PHONE||""}</div>
+          <div><b>${labels.city}:</b> ${row.CITY||""}</div>
+          <div><b>${labels.dob}:</b> ${row["DATE OF BIRTH"]||row["DATE of BIRTH"]||row["DATA NASCITA"]||""}</div>
+          <div><b>${labels.cv}:</b> ${cvKey ? `<a href="#" class="muted" onclick="openCV('${cvKey}');return false;">${labels.view} CV</a>` : "—"}</div>
         </div>
-        <div class="actions">
-          ${cv?`<button class="btn-mini" onclick="openCV('${cv}')">View CV</button>`:""}
+      </div>
+      <div class="card">
+        <h3>🎓 ${labels.edu}</h3>
+        <div class="detail">${row.EDUCATIONAL||"—"}</div>
+      </div>
+      <div class="card">
+        <h3>💼 ${labels.job}</h3>
+        <div class="detail">${row["JOB HISTORY"]||"—"}</div>
+      </div>
+      <div class="card">
+        <h3>🧠 ${labels.skills}</h3>
+        <div class="detail"><ul class="skills">${skillsList || "<li>—</li>"}</ul></div>
+      </div>
+      <div class="card">
+        <h3>🧾 ${labels.summary}</h3>
+        <div class="detail">${row.SUMMARIZE||"—"}</div>
+      </div>
+      <div class="card">
+        <h3>⭐ ${labels.eval}</h3>
+        <div class="detail">
+          <div><b>Score:</b> ${row.VOTE||"—"}</div>
+          <div><b>Consideration:</b> ${row.CONSIDERATION||"—"}</div>
         </div>
       </div>
     `;
-  }).join("");
-}
+  }
 
-/* ------------------- REVEAL ON SCROLL ------------------- */
-function revealOnScroll(){
-  const cards = document.querySelectorAll(".reveal");
-  const io = new IntersectionObserver((entries)=>{
-    entries.forEach(e=>{
-      if(e.isIntersecting){
-        e.target.classList.add("visible");
-        io.unobserve(e.target);
-      }
-    });
+  function renderAllApplicantCards(rows){
+    const container = $("applicantCards");
+    container.innerHTML = rows.map((r,idx)=>{
+      const name = (r.NAME || r.Name || r["Full Name"] || "Unnamed").trim();
+      const email = (r.EMAIL || "").trim();
+      const phone = (r.PHONE || "").trim();
+      const score = (r.VOTE || "").trim() || "-";
+      const cv = (r["CV LINK "] || r["CV LINK"] || "").trim();
+      const skillsArr = (r.SKILLS||"").split(/[•,;\n]/).filter(s=>s.trim());
+      const tags = skillsArr.slice(0,3).map(s=>`<span class="tag">${s.trim()}</span>`).join("");
+      const initial = name.charAt(0).toUpperCase() || "?";
+      const safeName = name.replace(/"/g,"&quot;").replace(/'/g,"\\'");
+      return `
+        <article class="app-card reveal" style="transition-delay:${(idx%10)*40}ms">
+          <div class="app-top">
+            <div style="display:flex;align-items:center;gap:10px;min-width:0;">
+              <div class="avatar">${initial}</div>
+              <div class="info">
+                <div class="name">${name}</div>
+                <div class="meta">${phone || ""}${(phone && email) ? " · " : ""}${email}</div>
+              </div>
+            </div>
+            <div class="score-badge">${score}</div>
+          </div>
+          <div class="tags">${tags}</div>
+          <div class="app-actions">
+            ${cv ? `<button class="btn-mini" onclick="openCV('${cv}')">View CV</button>` : ""}
+            <button class="btn-mini" onclick="selectInDropdown('${safeName}')">Open Profile</button>
+          </div>
+        </article>
+      `;
+    }).join("");
+  }
+
+  function selectInDropdown(name){
+    const sel = $("applicantSelect");
+    const found = Array.from(sel.options).find(o=>o.value===name);
+    if(found){
+      sel.value = name;
+      sel.dispatchEvent(new Event("change"));
+      document.getElementById("applicants").scrollIntoView({behavior:"smooth",block:"start"});
+    }
+  }
+
+  function openCV(link){ window.open(link,"_blank","noopener"); }
+
+  function renderShortlisted(rows){
+    const shortlisted = rows.filter(r=>Number(r.VOTE)>7);
+    const cont = $("shortlistContainer");
+    if(!shortlisted.length){
+      cont.textContent = "No shortlisted applicants yet.";
+      cont.dataset.shortlisted="[]";
+      return;
+    }
+    cont.dataset.shortlisted = JSON.stringify(shortlisted);
+    cont.innerHTML = shortlisted.map(r=>{
+      const name = r.NAME || r["Full Name"] || "Unnamed";
+      const email = r.EMAIL || "";
+      const phone = r.PHONE || "";
+      const score = r.VOTE || "-";
+      return `
+        <div class="candidate">
+          <div>
+            <strong>${name}</strong>
+            <div class="muted">${phone}${(phone && email)?" · ":""}${email}</div>
+          </div>
+          <div class="score-badge">${score}</div>
+        </div>
+      `;
+    }).join("");
+  }
+
+  $("refreshBtn").onclick = loadData;
+  $("refreshShortlistBtn").onclick = ()=>renderShortlisted(state.rows);
+  $("searchShortlist").addEventListener("input", e=>{
+    const term = e.target.value.toLowerCase();
+    const list = JSON.parse($("shortlistContainer").dataset.shortlisted || "[]");
+    const filtered = list.filter(r =>
+      (r.NAME||"").toLowerCase().includes(term) ||
+      (r.EMAIL||"").toLowerCase().includes(term) ||
+      (r.PHONE||"").toLowerCase().includes(term)
+    );
+    renderShortlisted(filtered);
   });
-  cards.forEach(c=>io.observe(c));
-}
 
-/* ------------------- VIEW CV ------------------- */
-function openCV(link){
-  window.open(link,"_blank");
-}
+  $("langToggle").onclick = ()=>{
+    state.lang = state.lang==="en" ? "ar" : "en";
+    applyI18n();
+  };
 
-/* ------------------- SAVE JOB DESCRIPTION ------------------- */
-$("saveJobDesc").onclick = async ()=>{
-  const val = $("jobDescInput").value.trim();
-  $("saveStatus").textContent = "Saving…";
-  const res = await fetch(N8N_ENDPOINT,{
-    method:"POST",
-    headers:{ "Content-Type":"application/json" },
-    body:JSON.stringify({ profile_wanted:val })
-  });
-  $("saveStatus").textContent = res.ok ? "Saved!" : "Failed!";
-};
+  $("saveJobDesc").onclick = async ()=>{
+    const text = $("jobDescInput").value.trim();
+    if(!text){
+      alert(state.lang==="ar" ? "فضلاً أدخل وصف الوظيفة أولاً." : "Please enter the job description first.");
+      return;
+    }
+    $("saveStatus").textContent = state.lang==="ar" ? "جارٍ الإرسال..." : "Sending...";
+    try{
+      const res = await fetch(N8N_ENDPOINT,{
+        method:"POST",
+        headers:{ "Content-Type":"application/json" },
+        body:JSON.stringify({ profile_wanted:text })
+      });
+      $("saveStatus").textContent = res.ok
+        ? (state.lang==="ar" ? "✓ تم الإرسال بنجاح" : "✓ Description sent successfully")
+        : (state.lang==="ar" ? "فشل الإرسال" : "Failed to send");
+    }catch(err){
+      $("saveStatus").textContent = "Error: " + err.message;
+    }
+  };
 
-/* ------------------- LANG TOGGLE ------------------- */
-$("langToggle").onclick = ()=>{
-  state.lang = state.lang==="en" ? "ar" : "en";
+  function setupRevealAnimation(){
+    const elems = document.querySelectorAll(".reveal");
+    const io = new IntersectionObserver((entries)=>{
+      entries.forEach(e=>{
+        if(e.isIntersecting){
+          e.target.classList.add("visible");
+          io.unobserve(e.target);
+        }
+      });
+    },{threshold:.08});
+    elems.forEach(el=>io.observe(el));
+  }
+
+  loadData();
   applyI18n();
-};
-
-/* ------------------- INIT ------------------- */
-loadData();
 </script>
-
 </body>
 </html>
-
